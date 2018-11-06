@@ -1,2 +1,2 @@
 # noServerNovember
-#noServerNovember challenge
+[#noServerNovember](https://serverless.com/blog/no-server-november-challenge/) challenge
