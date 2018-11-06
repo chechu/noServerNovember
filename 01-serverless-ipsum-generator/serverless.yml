@@ -1,0 +1,18 @@
+service: serverless-ipsum-generator
+
+provider:
+    name: aws
+    runtime: nodejs8.10
+    stage: ${opt:stage, 'dev'}
+    region: us-east-2
+    stackTags:
+        PACKAGE_VERSION: ${file(./package.json):version}
+        PACKAGE_NAME: ${file(./package.json):name}
+
+functions:
+    ipsum_generator:
+        handler: index.main
+        events:
+            - http:
+                path: /
+                method: get
