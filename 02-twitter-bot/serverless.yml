@@ -1,0 +1,35 @@
+service: twitter-bot
+
+package:
+    exclude:
+        - config.yml
+
+custom:
+    twitter: ${file(./config.yml)}
+
+provider:
+    name: aws
+    runtime: nodejs8.10
+    stage: ${opt:stage, 'dev'}
+    region: us-east-2
+    stackTags:
+        PACKAGE_VERSION: ${file(./package.json):version}
+        PACKAGE_NAME: ${file(./package.json):name}
+    environment:
+        CONSUMER_KEY: ${self:custom.twitter.CONSUMER_KEY}
+        SECRET: ${self:custom.twitter.SECRET}
+        TOKEN_KEY: ${self:custom.twitter.TOKEN_KEY}
+        TOKEN_SECRET: ${self:custom.twitter.TOKEN_SECRET}
+
+functions:
+    twitter_bot_cron:
+        handler: index.main
+        events:
+            - schedule: rate(1 day)
+
+    twitter_bot_api:
+        handler: index.main
+        events:
+            - http:
+                path: /
+                method: get

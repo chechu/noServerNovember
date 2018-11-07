@@ -1,0 +1,17 @@
+{
+  "name": "02-twitter-bot",
+  "version": "1.0.0",
+  "description": "Challenge #2 for #noServerNovember",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jesus Lanchas (https://github.com/chechu)",
+  "devDependencies": {
+    "serverless": "^1.32.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "twitter": "^1.7.1"
+  }
+}
